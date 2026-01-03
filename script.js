@@ -9,18 +9,32 @@ const phrases = [
 ];
 
 setInterval(() => {
-  const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-  createMessage(randomPhrase);
-}, 800); // cada 0.8 segundos
+  const text = phrases[Math.floor(Math.random() * phrases.length)];
+  createMessage(text);
+}, 900);
 
 function createMessage(text) {
   const msg = document.createElement("div");
   msg.className = "message";
   msg.textContent = text;
 
-  // Posición inicial: ABAJO
+  // Posición inicial (abajo y centrado)
   msg.style.left = "50%";
   msg.style.top = "90%";
+
+  // Movimiento
+  const x = (Math.random() * 500 - 250) + "px";
+  const y = (-300 - Math.random() * 200) + "px";
+
+  msg.style.setProperty("--x", x);
+  msg.style.setProperty("--y", y);
+
+  document.body.appendChild(msg);
+
+  setTimeout(() => {
+    msg.remove();
+  }, 3000);
+}
 
   // Movimiento hacia arriba + lados
   const x = (Math.random() * 500 - 250) + "px";
