@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Para mi amor 💖</title>
+    <style>
+        body {
+            background: #fff0f5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            margin: 100px auto;
+            animation: beat 1s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background: #ff6699;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .heart::before {
+            transform: rotate(-45deg);
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            transform: rotate(45deg);
+            top: -50px;
+            left: 0;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        #phrase {
+            font-size: 24px;
+            color: #c71585;
+            margin-top: 50px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart"></div>
+    <div id="phrase"></div>
+
+    <script>
+        const phrases = [
+            "Eres mi razón para sonreír 😍",
+            "Cada día te amo más 💕",
+            "Mi corazón late por ti ❤️",
+            "Eres mi felicidad diaria 😊",
+            "Contigo todo es mejor ✨", 
+            "Te amo desde el primer día 😘",
+            "Eres mi sueño hecho realidad ⭐",
+            "Gracias por existir 💗",
+            "Contigo todo es mágico ✨",
+            "Eres mi amor eterno 💞"
+        ];
+
+        let index = 0;
+        const phraseElement = document.getElementById('phrase');
+
+        function showPhrase() {
+            phraseElement.style.opacity = 0;
+            setTimeout(() => {
+                phraseElement.textContent = phrases[index];
+                phraseElement.style.opacity = 1;
+                index = (index + 1) % phrases.length;
+            }, 500);
+        }
+
+        showPhrase();
+        setInterval(showPhrase, 3000);
+    </script>
+
+</body>
+</html>
