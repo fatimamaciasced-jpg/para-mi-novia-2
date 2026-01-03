@@ -8,33 +8,33 @@ const phrases = [
   "Mi lugar favorito es contigo 🥰"
 ];
 
-const card = document.getElementById("card");
-
-card.addEventListener("click", () => {
-  phrases.forEach(text => createMessage(text));
-});
+setInterval(() => {
+  const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  createMessage(randomPhrase);
+}, 800); // cada 0.8 segundos
 
 function createMessage(text) {
   const msg = document.createElement("div");
   msg.className = "message";
   msg.textContent = text;
 
-  // Posición inicial (centro)
+  // Posición inicial: ABAJO
   msg.style.left = "50%";
-  msg.style.top = "50%";
+  msg.style.top = "90%";
 
-  // Dirección aleatoria
-  const x = (Math.random() * 400 - 200) + "px";
-  const y = (Math.random() * 300 - 150) + "px";
+  // Movimiento hacia arriba + lados
+  const x = (Math.random() * 500 - 250) + "px";
+  const y = (-300 - Math.random() * 200) + "px";
+
   msg.style.setProperty("--x", x);
   msg.style.setProperty("--y", y);
 
   document.body.appendChild(msg);
 
-  // Activar animación
   setTimeout(() => {
-    msg.style.opacity = 1;
-  }, 50);
+    msg.remove();
+  }, 3000);
+}
 
   // Eliminar después
   setTimeout(() => {
